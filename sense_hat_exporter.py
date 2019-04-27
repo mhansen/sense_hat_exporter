@@ -8,13 +8,13 @@ sense = SenseHat()
 class SenseHatCollector(object):
     def collect(self):
         yield GaugeMetricFamily(
-            name='sense_hat_temperature',
+            name='sense_hat_temperature_celsius',
             documentation='Temperature as measured by Raspberry Pi Sense Hat',
             value=sense.temperature)
         yield GaugeMetricFamily(
-            name='sense_hat_pressure',
-            documentation='Measured by Raspberry Pi Sense Hat',
-            value=sense.pressure)
+            name='sense_hat_pressure_pascals',
+            documentation='Pressure (Pa) Measured by Raspberry Pi Sense Hat',
+            value=sense.pressure*100)  # hPa to Pa
         yield GaugeMetricFamily(
             name='sense_hat_humidity',
             documentation='Measured by Raspberry Pi Sense Hat',

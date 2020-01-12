@@ -19,7 +19,19 @@ class SenseHatCollector(object):
             name='sense_hat_humidity',
             documentation='Measured by Raspberry Pi Sense Hat',
             value=sense.humidity)
+        yield compass_metric()
 
+def compass_metric():
+    raw = sense.get_compass_raw()
+
+    family = GaugeMetricFamily(
+            name='sense_hat_compass_raw',
+            documentation='Measured by Raspberry Pi Sense Hat',
+            labels=["axis"])
+    family.add_metric(["x"], raw["x"])
+    family.add_metric(["y"], raw["y"])
+    family.add_metric(["z"], raw["z"])
+    return family
 
 REGISTRY.register(SenseHatCollector())
 start_http_server(8000)

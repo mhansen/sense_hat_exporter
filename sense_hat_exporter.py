@@ -18,6 +18,7 @@ class SenseHatCollector(object):
             value=sense.humidity)
         yield compass_metric()
         yield accelerometer_metric()
+        yield gyroscope_metric()
 
 def temperature_metric():
     family = GaugeMetricFamily(
@@ -34,6 +35,18 @@ def compass_metric():
     family = GaugeMetricFamily(
             name='sense_hat_compass_raw',
             documentation='Measured by Raspberry Pi Sense Hat',
+            labels=["axis"])
+    family.add_metric(["x"], raw["x"])
+    family.add_metric(["y"], raw["y"])
+    family.add_metric(["z"], raw["z"])
+    return family
+
+def gyroscope_metric():
+    raw = sense.get_gyroscope_raw()
+
+    family = GaugeMetricFamily(
+            name='sense_hat_gyroscope_raw',
+            documentation='radians/second',
             labels=["axis"])
     family.add_metric(["x"], raw["x"])
     family.add_metric(["y"], raw["y"])

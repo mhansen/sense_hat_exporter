@@ -66,6 +66,7 @@ def accelerometer_metric():
     return family
 
 REGISTRY.register(SenseHatCollector())
-start_http_server(8000)
+# Registered at https://github.com/prometheus/prometheus/wiki/Default-port-allocations
+start_http_server(9607)
 while True:
   time.sleep(60)

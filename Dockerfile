@@ -1,4 +1,4 @@
-# Can be built on mac x86_64 fine, using virtualization
+# Can be built on any x86_64 fine, without virtualization, thanks to cross-build-start!
 
 # Tried this with alpine first, had a bad time.
 FROM balenalib/raspberrypi3-debian

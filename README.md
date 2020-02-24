@@ -2,6 +2,10 @@
 
 A [Prometheus](https://prometheus.io/) exporter for Raspberry Pi [Sense-HAT add-on board](https://www.raspberrypi.org/products/sense-hat/).
 
+Pair with Grafana for beautiful dashboards:
+
+![Grafana dashboard of temperature, humidity, pressure over time](img/grafana.png)
+
 End-to-end example showing prometheus text-format output:
 
 ```shell

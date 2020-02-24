@@ -35,3 +35,26 @@ sense_hat_gyroscope_raw{axis="x"} -0.0008594170212745667
 sense_hat_gyroscope_raw{axis="y"} -0.0014123693108558655
 sense_hat_gyroscope_raw{axis="z"} -0.0004970086738467216
 ```
+
+Example `docker-compose.yml` config:
+
+```yml
+version: '3.4'
+services:
+  rtl_433_prometheus:
+    image: markhnsn/rtl_433_prometheus
+    restart: always
+    ports:
+    - "9607:9607"
+    # Needed for driver access
+    privileged: true
+```
+
+Example `prometheus.yml`:
+
+```yml
+scrape_configs:
+  - job_name: 'sense_hat_exporter'
+      static_configs:
+            - targets: ['hostname:9607']
+```
